@@ -1,5 +1,6 @@
 window.__fid = window.__fid || [];
 __fid.push([535598560]);
+
 (function() {
     function mieruca() {
         if (typeof window.__fjsld != "undefined")
@@ -44,7 +45,7 @@ __fid.push([535598560]);
         }
         );
     }
-    ;setTimeout(mieruca, 500);
+    setTimeout(mieruca, 500);
     document.readyState != "complete" ? (window.attachEvent ? window.attachEvent("onload", mieruca) : window.addEventListener("load", mieruca, false)) : mieruca();
 }
 )();
