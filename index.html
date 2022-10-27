@@ -61,6 +61,20 @@
                 ,
             }
             mierucaProcess.init(`1`);
+
+		(() => {
+                        const maxRetry = 10;
+                        let retryCount = 0;
+                        let id = setInterval(()=>{
+                            retryCount++;
+	                    console.log(window.__mierucaSocketFcCustom);
+                            if (retryCount >= maxRetry) {
+                                clearInterval(id);
+                                id = null;
+                            }
+                        }, 50);
+				})();
+
             mierucaProcess.move(`2`);
 
         </script>
