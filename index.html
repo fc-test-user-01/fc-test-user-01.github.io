@@ -2,14 +2,21 @@
     <head>
         <script src="/mieruca-tag.js"></script>
         <script>
+
             const mierucaProcess = {
                 iID: null,
                 canReopen: false,
+	        urlWithoutSearch: `${location.protocol}://${location.host}${location.pathname}`,
                 init: (step)=>{
                     mierucaProcess.iID = setInterval(()=>{
                         try {
                             if (window.__mierucaFcCustom !== undefined) {
-                                window.__mierucaFcCustom.open(location.href);
+			        const search = (() => {
+				  const _ = [];
+			          _.push(`preview=${step}`);
+				  return searchArray.join(`&`);
+				})();
+			        window.__mierucaFcCustom.open(`${mierucaProcess.urlWithoutSearch}?${search}`);
                                 clearInterval(mierucaProcess.iID);
                                 mierucaProcess.iID = null;
                                 mierucaProcess.canReopen = true;
@@ -25,20 +32,26 @@
                 ,
                 move: (step)=>{
                     try {
-			const maxRetry = 5;
-		        let retryCount = 0;
+                        const maxRetry = 5;
+                        let retryCount = 0;
                         let id = setInterval(()=>{
-			    retryCount++;
+                            retryCount++;
                             if (window.__mierucaFcCustom !== undefined && mierucaProcess.canReopen === true) {
-                                window.__mierucaFcCustom.reopen(location.href);
-				clearInterval(id);
-				id = null;
+			        const search = (() => {
+				  const _ = [];
+			          _.push(`preview=${step}`);
+				  return searchArray.join(`&`);
+				})();
+				window.__mierucaFcCustom.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
+                                clearInterval(id);
+                                id = null;
                             }
-						if (retryCount >= maxRetry) {
-				clearInterval(id);
-				id = null;
-						}
-			}, 100);
+                            if (retryCount >= maxRetry) {
+                                clearInterval(id);
+                                id = null;
+                            }
+                        }
+                        , 100);
                     } catch (e) {
                         console.warn(e);
                     }
@@ -47,6 +60,7 @@
             }
             mierucaProcess.init(`1`);
             mierucaProcess.move(`2`);
+
         </script>
     </head>
     <body>
