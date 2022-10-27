@@ -30,36 +30,36 @@
                     }
                     , 100);
                 }
-                ,
-                move: (step)=>{
-                        const maxRetry = 5;
-                        let retryCount = 0;
-                        let id = setInterval(()=>{
-                    try {
-                            retryCount++;
-                            if (window.__mierucaFcCustom !== undefined && mierucaProcess.canReopen === true) {
-                                const search = (()=>{
-                                    const _ = [];
-                                    _.push(`preview=${step}`);
-                                    return _.join(`&`);
-                                }
-                                )();
-                                window.__mierucaFcCustom.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
-                                clearInterval(id);
-                                id = null;
-                            }
-                            if (retryCount >= maxRetry) {
-                                clearInterval(id);
-                                id = null;
-                            }
-                    } catch (e) {
-                        clearInterval(id);
-                        id = null;
-                        console.warn(e);
-                    }
-                        }
-                        , 100);
-                }
+                     ,
+                       move: (step)=>{
+                         const maxRetry = 5;
+                         let retryCount = 0;
+                         let id = setInterval(()=>{
+                             try {
+                             retryCount++;
+                             if (window.__mierucaFcCustom !== undefined && mierucaProcess.canReopen === true) {
+                             const search = (()=>{
+                                 const _ = [];
+                                 _.push(`preview=${step}`);
+                                 return _.join(`&`);
+                                 }
+                                 )();
+                             window.__mierucaFcCustom.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
+                             clearInterval(id);
+                             id = null;
+                             }
+                             if (retryCount >= maxRetry) {
+                             clearInterval(id);
+                             id = null;
+                             }
+                             } catch (e) {
+                             clearInterval(id);
+                             id = null;
+                             console.warn(e);
+                             }
+                         }
+                         , 100);
+                       }
                 ,
             }
             mierucaProcess.init(`1`);
