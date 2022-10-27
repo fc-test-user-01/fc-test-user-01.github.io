@@ -4,6 +4,7 @@
         <script>
 	  const mierucaProcess = {
 	    iID: null,
+	    canReopen: false,
 	    init: (step) => {
                 mierucaProcess.iID = setInterval(()=>{
                     try {
@@ -11,6 +12,7 @@
                             window.__mierucaFcCustom.open(location.href);
                             clearInterval(mierucaProcess.iID);
 			   mierucaProcess.iID = null;
+						mierucaProcess.canReopen = true;
                         }
                     } catch (e) {
                         clearInterval(mierucaProcess.iID);
@@ -21,7 +23,7 @@
 	    },
 	    move: (step) => {
                     try {
-              if (window.__mierucaFcCustom !== undefined && mierucaProcess.iID === null) {
+              if (window.__mierucaFcCustom !== undefined && mierucaProcess.canReopen === true) {
                 window.__mierucaFcCustom.reopen(location.href);
 	      }
                     } catch (e) {
