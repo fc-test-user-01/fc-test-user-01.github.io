@@ -3,7 +3,8 @@
         <script src="/mieruca-tag.js"></script>
         <script>
             (()=>{
-                let iID = setInterval(()=>{
+		let iID = null;
+                iID = setInterval(()=>{
                     try {
                         if (window.__mierucaFcCustom !== undefined) {
                             window.__mierucaFcCustom.open(location.href);
