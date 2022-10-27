@@ -32,10 +32,10 @@
                 }
                 ,
                 move: (step)=>{
-                    try {
                         const maxRetry = 5;
                         let retryCount = 0;
                         let id = setInterval(()=>{
+                    try {
                             retryCount++;
                             if (window.__mierucaFcCustom !== undefined && mierucaProcess.canReopen === true) {
                                 const search = (()=>{
@@ -52,11 +52,11 @@
                                 clearInterval(id);
                                 id = null;
                             }
-                        }
-                        , 100);
                     } catch (e) {
                         console.warn(e);
                     }
+                        }
+                        , 100);
                 }
                 ,
             }
