@@ -14,7 +14,7 @@
 			        const search = (() => {
 				  const _ = [];
 			          _.push(`preview=${step}`);
-				  return searchArray.join(`&`);
+				  return _.join(`&`);
 				})();
 			        window.__mierucaFcCustom.open(`${mierucaProcess.urlWithoutSearch}?${search}`);
                                 clearInterval(mierucaProcess.iID);
@@ -40,7 +40,7 @@
 			        const search = (() => {
 				  const _ = [];
 			          _.push(`preview=${step}`);
-				  return searchArray.join(`&`);
+				  return _.join(`&`);
 				})();
 				window.__mierucaFcCustom.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
                                 clearInterval(id);
