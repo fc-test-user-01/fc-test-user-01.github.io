@@ -34,14 +34,14 @@ __fid.push([535598560]);
                   console.log(_.o);
                 },
                 close: ()=> {
-                  console.log(_.o);
                   const _ = window.__mieruca_heatmap.getVariablesFcCustom();
+                  console.log(_.o);
                   _.o.close();
                 },
                 reopen: (url)=>{
                     (()=>{
-                        console.log(_.o);
                         const _ = window.__mieruca_heatmap.getVariablesFcCustom();
+                        console.log(_.o);
                         _.o.close();
                     }
                     )();
