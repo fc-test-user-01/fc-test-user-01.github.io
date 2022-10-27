@@ -21,8 +21,8 @@
 	    },
 	    move: (step) => {
                     try {
-              if (window.__mierucaFcCustom !== undefined && mierucaProcess.iID !== null) {
-                window.__mierucaFcCustom.open(location.href);
+              if (window.__mierucaFcCustom !== undefined && mierucaProcess.iID === null) {
+                window.__mierucaFcCustom.reopen(location.href);
 	      }
                     } catch (e) {
                         console.warn(e);
