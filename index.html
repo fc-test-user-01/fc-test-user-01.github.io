@@ -1,33 +1,36 @@
 <html>
-	<head>
-		<script src="/mieruca-tag.js"></script>
-		<script>
-			(() => {
-			    const iID = setInterval(() => {
-			      try {
-			        if (window.__mierucaFcCustom !== undefined) {
-		                  window.__mierucaFcCustom.open(location.href);
-			          clearInterval(iID);
-			        }
-			      } catch (e) {
-			        clearInterval(iID);
-			        console.warn(e);
-			      }
-			    }, 100);
-			})();
-		</script>
-	</head>
-	<body>
-		hello
+    <head>
+        <script src="/mieruca-tag.js"></script>
+        <script>
+            (()=>{
+                let iID = setInterval(()=>{
+                    try {
+                        if (window.__mierucaFcCustom !== undefined) {
+                            window.__mierucaFcCustom.open(location.href);
+                            clearInterval(iID);
+			   iID = null;
+                        }
+                    } catch (e) {
+                        clearInterval(iID);
+			   iID = null;
+                        console.warn(e);
+                    }
+                }
+                , 100);
+            }
+            )();
+        </script>
+    </head>
+    <body>
+        hello
 		<br>
-		<input type="button" value="button1">
-		<br>
-		<input type="button" value="button2">
-		<br>
-		<input type="button" value="button3">
-		<br>
-		<input type="button" value="button4">
-		<div style="height:3000px">
-		</div>
-	</body>
+        <input type="button" value="button1">
+        <br>
+        <input type="button" value="button2">
+        <br>
+        <input type="button" value="button3">
+        <br>
+        <input type="button" value="button4">
+        <div style="height:3000px"></div>
+    </body>
 </html>
