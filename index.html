@@ -2,9 +2,19 @@
 	<head>
 		<script src="/mieruca-tag.js"></script>
 		<script>
-			if (window.__mierucaFcCustom. !== undefined) {
-		          window.__mierucaFcCustom.open(location.href);
-			}
+			(() => {
+			    const iID = setInterval(() => {
+			      try {
+			        if (window.__mierucaFcCustom !== undefined) {
+		                  window.__mierucaFcCustom.open(location.href);
+			          clearInterval(iID);
+			        }
+			      } catch (e) {
+			        clearInterval(iID);
+			        console.warn(e);
+			      }
+			    }, 100);
+			})();
 		</script>
 	</head>
 	<body>
