@@ -6,17 +6,18 @@
             const mierucaProcess = {
                 iID: null,
                 canReopen: false,
-	        urlWithoutSearch: `${location.protocol}://${location.host}${location.pathname}`,
+                urlWithoutSearch: `${location.protocol}://${location.host}${location.pathname}`,
                 init: (step)=>{
                     mierucaProcess.iID = setInterval(()=>{
                         try {
                             if (window.__mierucaFcCustom !== undefined) {
-			        const search = (() => {
-				  const _ = [];
-			          _.push(`preview=${step}`);
-				  return _.join(`&`);
-				})();
-			        window.__mierucaFcCustom.open(`${mierucaProcess.urlWithoutSearch}?${search}`);
+                                const search = (()=>{
+                                    const _ = [];
+                                    _.push(`preview=${step}`);
+                                    return _.join(`&`);
+                                }
+                                )();
+                                window.__mierucaFcCustom.open(`${mierucaProcess.urlWithoutSearch}?${search}`);
                                 clearInterval(mierucaProcess.iID);
                                 mierucaProcess.iID = null;
                                 mierucaProcess.canReopen = true;
@@ -37,12 +38,13 @@
                         let id = setInterval(()=>{
                             retryCount++;
                             if (window.__mierucaFcCustom !== undefined && mierucaProcess.canReopen === true) {
-			        const search = (() => {
-				  const _ = [];
-			          _.push(`preview=${step}`);
-				  return _.join(`&`);
-				})();
-				window.__mierucaFcCustom.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
+                                const search = (()=>{
+                                    const _ = [];
+                                    _.push(`preview=${step}`);
+                                    return _.join(`&`);
+                                }
+                                )();
+                                window.__mierucaFcCustom.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
                                 clearInterval(id);
                                 id = null;
                             }
