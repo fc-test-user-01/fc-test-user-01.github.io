@@ -2,24 +2,24 @@
     <head>
         <script src="/mieruca-tag.js"></script>
         <script>
-            (()=>{
-		let iID = null;
-                iID = setInterval(()=>{
+	  const mierucaProcess = {
+	    iID: null,
+	    init: () => {
+                mierucaProcess.iID = setInterval(()=>{
                     try {
                         if (window.__mierucaFcCustom !== undefined) {
                             window.__mierucaFcCustom.open(location.href);
-                            clearInterval(iID);
-			   iID = null;
+                            clearInterval(mierucaProcess.iID);
+			   mierucaProcess.iID = null;
                         }
                     } catch (e) {
-                        clearInterval(iID);
-			   iID = null;
+                        clearInterval(mierucaProcess.iID);
+			   mierucaProcess.iID = null;
                         console.warn(e);
                     }
-                }
-                , 100);
-            }
-            )();
+                } , 100);
+	    },
+	  }
         </script>
     </head>
     <body>
