@@ -31,7 +31,7 @@ __fid.push([535598560]);
                   const _ = window.__mieruca_heatmap.getVariablesFcCustom();
                   _.t.local_url = url;
                   window.__mieruca_heatmap.init();
-                  window.__mierucaSocketFcCustom = _.o;
+                  console.log(_.o);
                 },
                 close: ()=> {
                   const _ = window.__mieruca_heatmap.getVariablesFcCustom();
@@ -48,7 +48,7 @@ __fid.push([535598560]);
                         const _ = window.__mieruca_heatmap.getVariablesFcCustom();
                         _.t.local_url = url;
                         _.i.sendPageView();
-                        window.__mierucaSocketFcCustom = _.o;
+                        console.log(_.o);
                     }
                     )(url);
                 },
