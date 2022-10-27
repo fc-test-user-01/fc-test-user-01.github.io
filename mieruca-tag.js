@@ -31,18 +31,16 @@ __fid.push([535598560]);
                   const _ = window.__mieruca_heatmap.getVariablesFcCustom();
                   _.t.local_url = url;
                   window.__mieruca_heatmap.init();
-		  window.__mierucaSocketFcCustom = _.o;
+                  window.__mierucaSocketFcCustom = _.o;
                 },
                 close: ()=> {
                   const _ = window.__mieruca_heatmap.getVariablesFcCustom();
                   _.o.close();
-		  window.__mierucaSocketFcCustom = null;
                 },
                 reopen: (url)=>{
                     (()=>{
                         const _ = window.__mieruca_heatmap.getVariablesFcCustom();
                         _.o.close();
-		        window.__mierucaSocketFcCustom = null;
                     }
                     )();
                     ((url)=>{
@@ -50,7 +48,7 @@ __fid.push([535598560]);
                         const _ = window.__mieruca_heatmap.getVariablesFcCustom();
                         _.t.local_url = url;
                         _.i.sendPageView();
-		        window.__mierucaSocketFcCustom = _.o;
+                        window.__mierucaSocketFcCustom = _.o;
                     }
                     )(url);
                 },
