@@ -4,7 +4,7 @@
         <script>
 	  const mierucaProcess = {
 	    iID: null,
-	    init: () => {
+	    init: (step) => {
                 mierucaProcess.iID = setInterval(()=>{
                     try {
                         if (window.__mierucaFcCustom !== undefined) {
@@ -19,7 +19,18 @@
                     }
                 } , 100);
 	    },
+	    move: (step) => {
+                    try {
+              if (window.__mierucaFcCustom !== undefined && mierucaProcess.iID !== null) {
+                window.__mierucaFcCustom.open(location.href);
+	      }
+                    } catch (e) {
+                        console.warn(e);
+					   }
+	    }
 	  }
+	  mierucaProcess.init(`1`);
+	  mierucaProcess.move(`2`);
         </script>
     </head>
     <body>
