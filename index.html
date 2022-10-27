@@ -53,6 +53,8 @@
                                 id = null;
                             }
                     } catch (e) {
+                        clearInterval(id);
+                        id = null;
                         console.warn(e);
                     }
                         }
