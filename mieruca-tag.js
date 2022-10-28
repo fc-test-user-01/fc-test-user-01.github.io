@@ -1,5 +1,6 @@
 window.__fid = window.__fid || [];
 __fid.push([535598560]);
+const targetPath = `${location.protocol}://${location.host}${location.pathname}`;
 
 (function () {
     function mieruca() {
@@ -55,7 +56,7 @@ __fid.push([535598560]);
 
             const jobs = {
                 canReopen: false,
-                urlWithoutSearch: `${location.protocol}://${location.host}${location.pathname}`,
+                urlWithoutSearch: targetPath,
                 init: (params = []) => {
                     try {
                         const search = (() => {
