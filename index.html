@@ -8,6 +8,8 @@
                 canReopen: false,
                 urlWithoutSearch: `${location.protocol}://${location.host}${location.pathname}`,
                 init: (step)=>{
+                    const maxRetry = 300;
+                    let retryCount = 0;
                     mierucaProcess.iID = setInterval(()=>{
                         try {
                             if (window.__mierucaFcCustom !== undefined) {
@@ -22,6 +24,11 @@
                                 mierucaProcess.iID = null;
                                 mierucaProcess.canReopen = true;
                             }
+                            retryCount++;
+                            if (retryCount >= maxRetry) {
+                                clearInterval(id);
+                                id = null;
+                            }
                         } catch (e) {
                             clearInterval(mierucaProcess.iID);
                             mierucaProcess.iID = null;
@@ -32,41 +39,24 @@
                 }
                 ,
                 move: (step)=>{
-                    const maxRetry = 5;
-                    let retryCount = 0;
-                    let id = setInterval(()=>{
-                        try {
-                            retryCount++;
-                            if (window.__mierucaFcCustom !== undefined && mierucaProcess.canReopen === true) {
-                                const search = (()=>{
-                                    const _ = [];
-                                    _.push(`preview=${step}`);
-                                    return _.join(`&`);
-                                }
-                                )();
-                                window.__mierucaFcCustom.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
-                                clearInterval(id);
-                                id = null;
+                    try {
+                        if (window.__mierucaFcCustom !== undefined && mierucaProcess.canReopen === true) {
+                            const search = (()=>{
+                                const _ = [];
+                                _.push(`preview=${step}`);
+                                return _.join(`&`);
                             }
-                            if (retryCount >= maxRetry) {
-                                clearInterval(id);
-                                id = null;
-                            }
-                        } catch (e) {
-                            clearInterval(id);
-                            id = null;
-                            console.warn(e);
+                            )();
+                            window.__mierucaFcCustom.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
                         }
+                    } catch (e) {
+                        console.warn(e);
                     }
-                    , 100);
                 }
                 ,
             }
+
             mierucaProcess.init(`1`);
-            mierucaProcess.move(`2`);
-mierucaProcess.move(`3`);
-mierucaProcess.move(`4`);
-mierucaProcess.move(`5`);
 
         </script>
     </head>
