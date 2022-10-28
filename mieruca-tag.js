@@ -59,14 +59,14 @@ __fid.push([535598560]);
                 init: (params = []) => {
                     try {
                         const search = (() => {
-                                const _ = [];
-                                for (const v of params) {
-                                    _.push(v);
-                                }
-                                if (_.length > 0) {
-                                    return `?${_.join('&')}`;
-                                }
-                                return ``;
+                            const _ = [];
+                            for (const v of params) {
+                                _.push(v);
+                            }
+                            if (_.length > 0) {
+                                return `?${_.join('&')}`;
+                            }
+                            return ``;
                         })();
                         main.open(`${jobs.urlWithoutSearch}?${search}`);
                         jobs.canReopen = true;
