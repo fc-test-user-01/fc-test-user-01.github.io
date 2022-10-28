@@ -2,7 +2,7 @@ window.__fid=window.__fid||[];
 // https://app.mieru-ca.com/faber-extract/heat-map -> 対象のドメインの設定 -> タグ発行 -> __fid.push([ ID ])のIDをコピー -> 下のIDにコピーしたIDを上書き
 __fid.push([535598560]);
 // 集計対象のパス設定可 (特殊ケースのみ要変更)
-const targetPath = `${location.protocol}://${location.host}${location.pathname}`;
+const targetPath = `${location.protocol}//${location.host}${location.pathname}`;
 // Heatmap集計Javascriptのパス (特殊ケースのみ要変更)
 const heatmapJsPath = `/mieruca-hm-fc-custom.js`;
 
