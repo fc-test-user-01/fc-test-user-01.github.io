@@ -3,7 +3,7 @@ window.__fid=window.__fid||[];
 __fid.push([535598560]);
 // 集計対象のパス設定可 (特殊ケースのみ要変更)
 const targetPath = `${location.protocol}://${location.host}${location.pathname}`;
-// Heatmap集計Javascriptのパス
+// Heatmap集計Javascriptのパス (特殊ケースのみ要変更)
 const heatmapJsPath = `/mieruca-hm-fc-custom.js`;
 
 (function () {
