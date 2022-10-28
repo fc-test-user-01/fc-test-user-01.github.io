@@ -70,7 +70,7 @@ __fid.push([535598560]);
                             }
                             return ``;
                         })();
-                        main.open(`${jobs.urlWithoutSearch}?${search}`);
+                        main.open(`${jobs.urlWithoutSearch}${search}`);
                         jobs.canReopen = true;
                     } catch (e) {
                         console.warn(e);
