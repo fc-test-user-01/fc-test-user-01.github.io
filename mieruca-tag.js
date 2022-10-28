@@ -31,17 +31,14 @@ __fid.push([535598560]);
                   const _ = window.__mieruca_heatmap.getVariablesFcCustom();
                   _.t.local_url = url;
                   window.__mieruca_heatmap.init();
-                  console.log(_.o);
                 },
                 close: ()=> {
                   const _ = window.__mieruca_heatmap.getVariablesFcCustom();
-                  console.log(_.o);
                   _.o.close();
                 },
                 reopen: (url)=>{
                     (()=>{
                         const _ = window.__mieruca_heatmap.getVariablesFcCustom();
-                        console.log(_.o);
                         _.o.close();
                     }
                     )();
@@ -50,7 +47,6 @@ __fid.push([535598560]);
                         const _ = window.__mieruca_heatmap.getVariablesFcCustom();
                         _.t.local_url = url;
                         _.i.sendPageView();
-                        console.log(_.o);
                     }
                     )(url);
                 },
