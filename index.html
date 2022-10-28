@@ -16,7 +16,7 @@
                 }
                 // params : array
                 move(params) {
-                  if (!this.jobs) {
+                  if (this.jobs === undefined) {
                     return ;
                   }
                   try {
