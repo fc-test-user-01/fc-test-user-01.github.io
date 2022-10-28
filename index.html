@@ -1,25 +1,26 @@
 <html>
     <head>
         <script src="/mieruca-tag.js"></script>
-        <script>
 
-            class CMierucaFcCustom {
-              // params : array
-              constructor(params) {
-                window.__mierucaFcCustomCallBack = (jobs) => {
-                  this.jobs = jobs;
-                  this.jobs.init(params);
+        <script>
+            (() => {
+              class CMierucaFcCustom {
+                // params : array
+                constructor(params) {
+                  window.__mierucaFcCustomCallBack = (jobs) => {
+                    this.jobs = jobs;
+                    this.jobs.init(params);
+                  }
+                }
+                // params : array
+                move(params) {
+                  this.jobs.move(params);
                 }
               }
-              // params : array
-              move(params) {
-                this.jobs.move(params);
-              }
-            }
-
-            const mierucaFcCustom = new CMierucaFcCustom([`preview=1`]);
-
+              const window.__mierucaFcCustom = new CMierucaFcCustom([`preview=1`]);
+            })();
         </script>
+
     </head>
     <body>
         hello
