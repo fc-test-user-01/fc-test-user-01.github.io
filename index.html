@@ -3,60 +3,11 @@
         <script src="/mieruca-tag.js"></script>
         <script>
 
-            const mierucaProcess = {
-                iID: null,
-                canReopen: false,
-                urlWithoutSearch: `${location.protocol}://${location.host}${location.pathname}`,
-                init: (step)=>{
-                    const maxRetry = 300;
-                    let retryCount = 0;
-                    mierucaProcess.iID = setInterval(()=>{
-                        try {
-                            if (window.__mierucaFcCustom !== undefined) {
-                                const search = (()=>{
-                                    const _ = [];
-                                    _.push(`preview=${step}`);
-                                    return _.join(`&`);
-                                }
-                                )();
-                                window.__mierucaFcCustom.open(`${mierucaProcess.urlWithoutSearch}?${search}`);
-                                clearInterval(mierucaProcess.iID);
-                                mierucaProcess.iID = null;
-                                mierucaProcess.canReopen = true;
-                            }
-                            retryCount++;
-                            if (retryCount >= maxRetry) {
-                                clearInterval(id);
-                                id = null;
-                            }
-                        } catch (e) {
-                            clearInterval(mierucaProcess.iID);
-                            mierucaProcess.iID = null;
-                            console.warn(e);
-                        }
-                    }
-                    , 100);
-                }
-                ,
-                move: (step)=>{
-                    try {
-                        if (window.__mierucaFcCustom !== undefined && mierucaProcess.canReopen === true) {
-                            const search = (()=>{
-                                const _ = [];
-                                _.push(`preview=${step}`);
-                                return _.join(`&`);
-                            }
-                            )();
-                            window.__mierucaFcCustom.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
-                        }
-                    } catch (e) {
-                        console.warn(e);
-                    }
-                }
-                ,
+            mierucaJobs = null;
+            window.__mierucaFcCustomCallBack(jobs) {
+              jobs.init([`preview=1`]);
+              mierucaJobs = jobs;
             }
-
-            mierucaProcess.init(`1`);
 
         </script>
     </head>

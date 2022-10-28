@@ -1,7 +1,7 @@
 window.__fid = window.__fid || [];
 __fid.push([535598560]);
 
-(function() {
+(function () {
     function mieruca() {
         if (typeof window.__fjsld != "undefined")
             return;
@@ -14,7 +14,7 @@ __fid.push([535598560]);
             headers: {
                 'Content-Type': fjs.type
             }
-        }).then(r=>r.text()).then((t)=>{
+        }).then(r => r.text()).then((t) => {
             t = t.replace(`new MierucaHM`, `null`).replace(`window.__mieruca_heatmap.init()`, `window.__mieruca_heatmap=null`);
             const sTarget = `"use strict";`;
             const sInsert = `this.getVariablesFcCustom=()=>{return{e:e, t:t, o:o, i:i}};`;
@@ -25,24 +25,25 @@ __fid.push([535598560]);
             const cDom = document.createElement(`script`);
             cDom.innerText = t;
             tDom.insertAdjacentElement(`beforeBegin`, cDom);
-            window.__mierucaFcCustom = {
-                open: (url)=> {
-                  window.__mieruca_heatmap = new MierucaHM;
-                  const _ = window.__mieruca_heatmap.getVariablesFcCustom();
-                  _.t.local_url = url;
-                  window.__mieruca_heatmap.init();
+
+            const main = {
+                open: (url) => {
+                    window.__mieruca_heatmap = new MierucaHM;
+                    const _ = window.__mieruca_heatmap.getVariablesFcCustom();
+                    _.t.local_url = url;
+                    window.__mieruca_heatmap.init();
                 },
-                close: ()=> {
-                  const _ = window.__mieruca_heatmap.getVariablesFcCustom();
-                  _.o.close();
+                close: () => {
+                    const _ = window.__mieruca_heatmap.getVariablesFcCustom();
+                    _.o.close();
                 },
-                reopen: (url)=>{
-                    (()=>{
+                reopen: (url) => {
+                    (() => {
                         const _ = window.__mieruca_heatmap.getVariablesFcCustom();
                         _.o.close();
                     }
                     )();
-                    ((url)=>{
+                    ((url) => {
                         window.__mieruca_heatmap = new MierucaHM;
                         const _ = window.__mieruca_heatmap.getVariablesFcCustom();
                         _.t.local_url = url;
@@ -51,6 +52,46 @@ __fid.push([535598560]);
                     )(url);
                 },
             }
+
+            const jobs = {
+                canReopen: false,
+                urlWithoutSearch: `${location.protocol}://${location.host}${location.pathname}`,
+                init: (params) => {
+                    try {
+                        const search = (() => {
+                            const _ = [];
+                            for (const v of params) {
+                                _.push(v);
+                            }
+                            return _.join(`&`);
+                        })();
+                        main.open(`${mierucaProcess.urlWithoutSearch}?${search}`);
+                        mierucaProcess.canReopen = true;
+                    } catch (e) {
+                        console.warn(e);
+                    }
+                },
+                move: (params) => {
+                    try {
+                        if (main !== undefined && mierucaProcess.canReopen === true) {
+                            const search = (() => {
+                                const _ = [];
+                                for (const v of params) {
+                                    _.push(v);
+                                }
+                                return _.join(`&`);
+                            }
+                            )();
+                            main.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
+                        }
+                    } catch (e) {
+                        console.warn(e);
+                    }
+                },
+            }
+
+            window.__mierucaFcCustomCallBack(jobs);
+
         }
         );
     }
