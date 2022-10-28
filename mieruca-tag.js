@@ -56,14 +56,17 @@ __fid.push([535598560]);
             const jobs = {
                 canReopen: false,
                 urlWithoutSearch: `${location.protocol}://${location.host}${location.pathname}`,
-                init: (params) => {
+                init: (params = []) => {
                     try {
                         const search = (() => {
-                            const _ = [];
-                            for (const v of params) {
-                                _.push(v);
-                            }
-                            return _.join(`&`);
+                                const _ = [];
+                                for (const v of params) {
+                                    _.push(v);
+                                }
+                                if (_.length > 0) {
+                                    return `?${_.join('&')}`;
+                                }
+                                return ``;
                         })();
                         main.open(`${jobs.urlWithoutSearch}?${search}`);
                         jobs.canReopen = true;
@@ -71,7 +74,7 @@ __fid.push([535598560]);
                         console.warn(e);
                     }
                 },
-                move: (params) => {
+                move: (params = []) => {
                     try {
                         if (main !== undefined && jobs.canReopen === true) {
                             const search = (() => {
@@ -79,10 +82,13 @@ __fid.push([535598560]);
                                 for (const v of params) {
                                     _.push(v);
                                 }
-                                return _.join(`&`);
+                                if (_.length > 0) {
+                                    return `?${_.join('&')}`;
+                                }
+                                return ``;
                             }
                             )();
-                            main.reopen(`${jobs.urlWithoutSearch}?${search}`);
+                            main.reopen(`${jobs.urlWithoutSearch}${search}`);
                         }
                     } catch (e) {
                         console.warn(e);
