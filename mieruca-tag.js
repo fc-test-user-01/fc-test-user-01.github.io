@@ -61,7 +61,9 @@ __fid.push([535598560]);
                         const search = (() => {
                             const _ = [];
                             for (const v of params) {
-                                _.push(v);
+                                if (v) {
+                                  _.push(v);
+                                }
                             }
                             if (_.length > 0) {
                                 return `?${_.join('&')}`;
@@ -80,7 +82,9 @@ __fid.push([535598560]);
                             const search = (() => {
                                 const _ = [];
                                 for (const v of params) {
-                                    _.push(v);
+                                    if (v) {
+                                        _.push(v);
+                                    }
                                 }
                                 if (_.length > 0) {
                                     return `?${_.join('&')}`;
