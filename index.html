@@ -1,44 +1,58 @@
 <html>
-    <head>
-        <script src="/mieruca-tag.js"></script>
 
-        <script>
-            (() => {
-              class CMierucaFcCustom {
-                // params : array
-                constructor(params) {
-                  window.__mierucaFcCustomCallBack = (jobs) => {
-                    this.jobs = jobs;
-                    this.jobs.init(params);
-                  }
-                }
-                // params : array
-                move(params) {
-                  if (this.jobs === undefined) {
-                    return ;
-                  }
-                  try {
-                    this.jobs.move(params);
-                  } catch(e) {
-                    console.warn(e);
-                  }
-                }
-              }
-              window.__mierucaFcCustom = new CMierucaFcCustom(['type=fn', `preview=1`]);
-            })();
-        </script>
+<head>
+  <script src="/mieruca-tag.js"></script>
 
-    </head>
-    <body>
-        hello
-		<br>
-        <input type="button" value="button1">
-        <br>
-        <input type="button" value="button2">
-        <br>
-        <input type="button" value="button3">
-        <br>
-        <input type="button" value="button4">
-        <div style="height:3000px"></div>
-    </body>
+  <script>
+    (() => {
+      class CMierucaFcCustom {
+        // params : array
+        constructor(params) {
+          this.ready = false;
+          this.setParams(params);
+          window.__mierucaFcCustomCallBack = (jobs) => {
+            this.jobs = jobs;
+            this.jobs.init(this.getParams());
+            this.ready = true;
+          }
+        }
+        // params : array
+        move(params) {
+          this.setParams(params);
+          if (this.jobs === undefined) {
+            return;
+          }
+          try {
+            this.jobs.move(this.getParams());
+          } catch (e) {
+            console.warn(e);
+          }
+        }
+        // params : array
+        setParams(params) {
+          this.params = params
+        }
+        getParams() {
+          return this.params
+        }
+      }
+      window.__mierucaFcCustom = new CMierucaFcCustom(['type=fn', `preview=1`]);
+    })();
+  </script>
+
+</head>
+
+<body>
+  hello
+  <br>
+  <input type="button" value="button1">
+  <br>
+  <input type="button" value="button2">
+  <br>
+  <input type="button" value="button3">
+  <br>
+  <input type="button" value="button4">
+  <div style="height:3000px"></div>
+</body>
+
 </html>
