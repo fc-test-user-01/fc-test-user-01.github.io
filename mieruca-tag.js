@@ -65,15 +65,15 @@ __fid.push([535598560]);
                             }
                             return _.join(`&`);
                         })();
-                        main.open(`${mierucaProcess.urlWithoutSearch}?${search}`);
-                        mierucaProcess.canReopen = true;
+                        main.open(`${jobs.urlWithoutSearch}?${search}`);
+                        jobs.canReopen = true;
                     } catch (e) {
                         console.warn(e);
                     }
                 },
                 move: (params) => {
                     try {
-                        if (main !== undefined && mierucaProcess.canReopen === true) {
+                        if (main !== undefined && jobs.canReopen === true) {
                             const search = (() => {
                                 const _ = [];
                                 for (const v of params) {
@@ -82,7 +82,7 @@ __fid.push([535598560]);
                                 return _.join(`&`);
                             }
                             )();
-                            main.reopen(`${mierucaProcess.urlWithoutSearch}?${search}`);
+                            main.reopen(`${jobs.urlWithoutSearch}?${search}`);
                         }
                     } catch (e) {
                         console.warn(e);

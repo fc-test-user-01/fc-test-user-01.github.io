@@ -3,11 +3,21 @@
         <script src="/mieruca-tag.js"></script>
         <script>
 
-            mierucaJobs = null;
-            window.__mierucaFcCustomCallBack = (jobs) => {
-              jobs.init([`preview=1`]);
-              mierucaJobs = jobs;
+            class CMierucaFcCustom {
+              // params : array
+              constructor(params) {
+                window.__mierucaFcCustomCallBack = (jobs) => {
+                  this.jobs = jobs;
+                  this.jobs.init(params);
+                }
+              }
+              // params : array
+              move(params) {
+                this.jobs.move(params);
+              }
             }
+
+            const mierucaFcCustom = new CMierucaFcCustom([`preview=1`]);
 
         </script>
     </head>
