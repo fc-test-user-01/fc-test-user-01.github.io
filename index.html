@@ -14,7 +14,11 @@
                 }
                 // params : array
                 move(params) {
-                  this.jobs.move(params);
+                  try {
+                    this.jobs.move(params);
+                  } catch(e) {
+                    console.warn(e);
+                  }
                 }
               }
               window.__mierucaFcCustom = new CMierucaFcCustom([`preview=1`]);
