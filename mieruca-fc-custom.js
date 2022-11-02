@@ -29,4 +29,3 @@ class CMierucaFcCustom {
         return this.params
     }
 }
-window.__mierucaFcCustom = new CMierucaFcCustom(['type=fn', `preview=1`]);
