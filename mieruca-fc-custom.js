@@ -7,6 +7,7 @@ class CMierucaFcCustom {
             this.jobs = jobs;
             this.jobs.init(this.getParams());
             this.ready = true;
+            alert(1);
         }
     }
     // params : array
