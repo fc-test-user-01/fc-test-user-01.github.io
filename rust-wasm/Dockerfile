@@ -2,6 +2,7 @@ FROM rust:1.73-bookworm
 
 RUN apt update
 RUN apt install vim curl npm git nmap -y
+RUN apt install llvm-dev libclang-dev clang -y
 
 WORKDIR /usr/src/myapp
 RUN cargo install wasm-pack
