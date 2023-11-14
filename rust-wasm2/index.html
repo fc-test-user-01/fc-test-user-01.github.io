@@ -7,14 +7,14 @@
 </head>
 <body>
     <script type="text/javascript">
+        let testFunc = null;
         async function run() {
             const response = await fetch('hello_world_wasm_bg.wasm');
             const buffer = await response.arrayBuffer();
             const module = await WebAssembly.instantiate(buffer);
             const exports = module.instance.exports;
-            console.log(exports.hello_world());
+            testFunc = exports.hello_world();
         }
-
         run();
     </script>
 </body>
