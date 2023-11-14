@@ -6,12 +6,14 @@
     <title>Hello World WebAssembly</title>
 </head>
 <body>
-    <script type="module">
-        import init, { hello_world } from './hello_world_wasm.js';
-
+    <script type="text/javascript">
         async function run() {
-            await init();
-            hello_world();
+            const response = await fetch('hello_world_wasm.wasm');
+            const buffer = await response.arrayBuffer();
+            const module = await WebAssembly.instantiate(buffer);
+            const exports = module.instance.exports;
+            
+            exports.hello_world();
         }
 
         run();
