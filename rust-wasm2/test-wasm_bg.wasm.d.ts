@@ -3,7 +3,7 @@
 export const memory: WebAssembly.Memory;
 export function set_value(a: number): void;
 export function get_value(): number;
-export function set_string(a: number): void;
+export function set_string(a: number): number;
 export function get_string(): number;
 export function hello_world(): number;
 export function main(a: number, b: number): number;
