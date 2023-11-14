@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World WebAssembly</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello World WebAssembly</title>
 </head>
 <body>
-    <script>
-	    let buffer = null;
-	    let module = null;
-	    let exports = null;
-	    let tPtr = null;
-	    async function run() {
-		    const response = await fetch('hello_world_wasm_bg.wasm');
-		    buffer = await response.arrayBuffer();
-		    module = await WebAssembly.instantiate(buffer);
-		    exports = module.instance.exports;
-		    tPtr = exports.hello_world();
-		    const buf = new Uint8Array(exports.memory.buffer, tPtr);
-		    // Find the index of the first null pointer
-		    const nullPointerIndex = Array.from(buf).indexOf(0);
-		    // Create a new Uint8Array up to and including the null pointer
-		    const truncatedArray = buf.subarray(0, nullPointerIndex);
-		    const str = String.fromCharCode.apply(null, truncatedArray);
-		    console.log(str);
-	    }
-	    run();
-    </script>
+<script>
+let buffer = null;
+let module = null;
+let exports = null;
+let tPtr = null;
+async function run() {
+  const response = await fetch('test-wasm_bg.wasm');
+  buffer = await response.arrayBuffer();
+  module = await WebAssembly.instantiate(buffer);
+  exports = module.instance.exports;
+  tPtr = exports.hello_world();
+  const buf = new Uint8Array(exports.memory.buffer, tPtr);
+  // Find the index of the first null pointer
+  const nullPointerIndex = Array.from(buf).indexOf(0);
+  // Create a new Uint8Array up to and including the null pointer
+  const truncatedArray = buf.subarray(0, nullPointerIndex);
+  const str = String.fromCharCode.apply(null, truncatedArray);
+  console.log(str);
+}
+run();
+</script>
 </body>
 </html>
 
