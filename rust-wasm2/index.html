@@ -12,7 +12,7 @@ let module = null;
 let exports = null;
 let tPtr = null;
 async function run() {
-  const response = await fetch('test-wasm_bg.wasm');
+  const response = await fetch(`test-wasm_bg.wasm`);
   buffer = await response.arrayBuffer();
   module = await WebAssembly.instantiate(buffer);
   exports = module.instance.exports;
@@ -29,4 +29,3 @@ run();
 </script>
 </body>
 </html>
-
