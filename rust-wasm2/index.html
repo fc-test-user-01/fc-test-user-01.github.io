@@ -12,8 +12,7 @@
             const buffer = await response.arrayBuffer();
             const module = await WebAssembly.instantiate(buffer);
             const exports = module.instance.exports;
-            
-            exports.hello_world();
+            console.log(exports.hello_world());
         }
 
         run();
