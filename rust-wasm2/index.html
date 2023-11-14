@@ -7,13 +7,16 @@
 </head>
 <body>
     <script type="text/javascript">
-        let testFunc = null;
+        let module = null;
+        let tPtr = null;
         async function run() {
             const response = await fetch('hello_world_wasm_bg.wasm');
             const buffer = await response.arrayBuffer();
-            const module = await WebAssembly.instantiate(buffer);
+            module = await WebAssembly.instantiate(buffer);
             const exports = module.instance.exports;
-            testFunc = exports.hello_world();
+            tPtr = exports.hello_world();
+            const resultStr = new TextDecoder('utf-8').decode(new Uint8Array(module.memory.buffer, tPtr));
+	    console.log(resultStr);
         }
         run();
     </script>
