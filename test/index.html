@@ -7,7 +7,7 @@
 </head>
 <body>
   <input type="file" id="imageInput" accept="image/*">
-  <canvas id="imageCanvas" style="display: none;"></canvas>
+  <canvas id="imageCanvas"></canvas>
 
   <script>
     function loadImageToBuffer() {
@@ -43,6 +43,7 @@
 
             // Set the image source to the data URL
             image.src = readerEvent.target.result;
+            console.log(image.src);
           };
 
           // Read the file as a data URL
