@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image to Buffer</title>
+</head>
+<body>
+  <input type="file" id="imageInput" accept="image/*">
+  <canvas id="imageCanvas" style="display: none;"></canvas>
+
+  <script>
+    function loadImageToBuffer() {
+      const input = document.getElementById('imageInput');
+      const canvas = document.getElementById('imageCanvas');
+      const ctx = canvas.getContext('2d');
+
+      input.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+
+        if (file) {
+          const reader = new FileReader();
+
+          reader.onload = function (readerEvent) {
+            const image = new Image();
+
+            image.onload = function () {
+              canvas.width = image.width;
+              canvas.height = image.height;
+
+              // Draw the image onto the canvas
+              ctx.drawImage(image, 0, 0);
+
+              // Get the pixel data from the canvas
+              const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+              // Access the pixel data buffer
+              const buffer = imageData.data.buffer;
+
+              // Use the buffer as needed
+              console.log(buffer);
+            };
+
+            // Set the image source to the data URL
+            image.src = readerEvent.target.result;
+          };
+
+          // Read the file as a data URL
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    // Call the function to set up the event listener
+    loadImageToBuffer();
+  </script>
+</body>
+</html>
+
