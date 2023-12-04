@@ -43,7 +43,20 @@
 
             // Set the image source to the data URL
             image.src = readerEvent.target.result;
-            console.log(image.src);
+
+            ((a1) => {
+              let imageData = a1;
+              // Define a regular expression to match the pattern
+              const regex = /^data:image\/[a-z]+;base64,/i;
+              // Perform the replacement
+              imageData = imageData.replace(regex, '');
+              // Use TextEncoder to convert the string to Uint8Array
+              const textEncoder = new TextEncoder();
+              const uint8Array = textEncoder.encode(imageData);
+              // Print the resulting Uint8Array
+              console.log(uint8Array);
+            })(image.src);
+
           };
 
           // Read the file as a data URL
