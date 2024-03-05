@@ -18,11 +18,6 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   // Perform any necessary processing
   console.log('Request intercepted:', event.request.url);
-  if (url.pathname.includes('test')) {
-    event.respondWith(
-      new Response('Intercepted content!')
-    );
-  }
   console.log(`Client`);
   console.log(self.clients);
   // Inform the client using postMessage API
@@ -36,6 +31,14 @@ self.addEventListener('fetch', event => {
       });
     })
   );
+  if (url.pathname.includes('test')) {
+    // Wait for 10 seconds before responding
+    setTimeout(() => {
+      event.respondWith(
+        new Response('Intercepted content!')
+      );
+    }, 10000); // 10 seconds in milliseconds
+  }
 });
 
 
