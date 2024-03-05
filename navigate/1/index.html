@@ -46,28 +46,19 @@
               });
           });
 
+          if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+            navigator.serviceWorker.controller.postMessage({ type: 'checkForUpdate' });
+          }
+
           navigator.serviceWorker.addEventListener('message', event => {
             if (event.data && event.data.type === 'interceptedRequest') {
-              console.log('Intercepted Request:', event.data.message);
-              // Optionally show a notification to inform the user
-              // Notify the user or perform any other desired action
+              const s = 'Intercepted Request:', event.data.message;
+              console.log(s);
+              alert(s);
             }
           });
-        }
 
-//        // Add event listener for beforeunload event
-//        window.addEventListener('beforeunload', function(event) {
-//            // Set window.myValue when beforeunload event is triggered
-//            window.myValue = "Some value";
-//        });
-//        
-//        // Check window.myValue periodically
-//        setInterval(() => {
-//            if (window.myValue) {
-//                // If window.myValue is not null or undefined, alert
-//                alert('Value has changed: ' + window.myValue);
-//            }
-//        }, 1); // Check every 1 milliseconds
+        }
 
     </script>
 </head>
