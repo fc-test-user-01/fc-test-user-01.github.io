@@ -48,6 +48,9 @@
 //                alert('Value has changed: ' + window.myValue);
 //            }
 //        }, 1); // Check every 1 milliseconds
+window.addEventListener("visibilitychange", (event) => {
+  alert(1)
+});
     </script>
 </head>
 <body onbeforeunload="alert('Goodbye')">
