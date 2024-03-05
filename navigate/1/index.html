@@ -52,7 +52,7 @@
 
           navigator.serviceWorker.addEventListener('message', event => {
             if (event.data && event.data.type === 'interceptedRequest') {
-              const s = 'Intercepted Request:', event.data.message;
+              const s = `Intercepted Request: ${event.data.message}`;
               console.log(s);
               alert(s);
             }
