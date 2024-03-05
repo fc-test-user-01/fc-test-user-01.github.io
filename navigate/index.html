@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+    </style>
+    <script>
+        // Add event listener for beforeunload event
+        window.addEventListener('beforeunload', function(event) {
+            // Set window.myValue when beforeunload event is triggered
+            window.myValue = "Some value";
+        });
+        
+        // Check window.myValue periodically
+        setInterval(() => {
+            if (window.myValue) {
+                // If window.myValue is not null or undefined, alert
+                alert('Value has changed: ' + window.myValue);
+            }
+        }, 1); // Check every 1 milliseconds
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Sample Page</h1>
+    </header>
+    <a href="https://google.com">TEST LINK</a>
+    <div class="container">
+        <h2>About Us</h2>
+        <p>This is a sample page demonstrating basic HTML structure and styling.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</p>
+        <p>Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+    </div>
+</body>
+</html>
+
