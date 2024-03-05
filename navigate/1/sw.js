@@ -16,6 +16,11 @@ self.addEventListener('message', function(event) {
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
+  if (url.pathname === '/') {
+    event.respondWith(
+      new Response('Intercepted content!')
+    );
+  }
   // Inform the client using postMessage API
   event.waitUntil(
     self.clients.matchAll().then(clients => {
