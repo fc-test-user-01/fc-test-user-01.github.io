@@ -16,6 +16,8 @@ self.addEventListener('message', function(event) {
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
+  // Perform any necessary processing
+  console.log('Request intercepted:', event.request.url);
   if (url.pathname.includes('test')) {
     event.respondWith(
       new Response('Intercepted content!')
