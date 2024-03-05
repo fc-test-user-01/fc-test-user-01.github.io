@@ -15,6 +15,9 @@ self.addEventListener('message', function(event) {
 });
 
 self.addEventListener('fetch', event => {
+  event.respondWith(
+    new Response('Intercepted content!')
+  );
   const url = new URL(event.request.url);
   // Perform any necessary processing
   console.log('Request intercepted:', event.request.url);
@@ -31,14 +34,6 @@ self.addEventListener('fetch', event => {
       });
     })
   );
-  if (url.pathname.includes('test')) {
-    // Wait for 10 seconds before responding
-    setTimeout(() => {
-      event.respondWith(
-        new Response('Intercepted content!')
-      );
-    }, 10000); // 10 seconds in milliseconds
-  }
 });
 
 
