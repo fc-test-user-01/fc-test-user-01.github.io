@@ -35,22 +35,22 @@
         }
     </style>
     <script>
-        // Add event listener for beforeunload event
-        window.addEventListener('beforeunload', function(event) {
-            // Set window.myValue when beforeunload event is triggered
-            window.myValue = "Some value";
-        });
-        
-        // Check window.myValue periodically
-        setInterval(() => {
-            if (window.myValue) {
-                // If window.myValue is not null or undefined, alert
-                alert('Value has changed: ' + window.myValue);
-            }
-        }, 1); // Check every 1 milliseconds
+//        // Add event listener for beforeunload event
+//        window.addEventListener('beforeunload', function(event) {
+//            // Set window.myValue when beforeunload event is triggered
+//            window.myValue = "Some value";
+//        });
+//        
+//        // Check window.myValue periodically
+//        setInterval(() => {
+//            if (window.myValue) {
+//                // If window.myValue is not null or undefined, alert
+//                alert('Value has changed: ' + window.myValue);
+//            }
+//        }, 1); // Check every 1 milliseconds
     </script>
 </head>
-<body>
+<body onbeforeunload="alert('Goodbye')">
     <header>
         <h1>Welcome to Sample Page</h1>
     </header>
