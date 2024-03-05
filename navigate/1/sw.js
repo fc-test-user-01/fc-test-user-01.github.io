@@ -23,6 +23,8 @@ self.addEventListener('fetch', event => {
       new Response('Intercepted content!')
     );
   }
+  console.log(`Client`);
+  console.log(self.clients);
   // Inform the client using postMessage API
   event.waitUntil(
     self.clients.matchAll().then(clients => {
