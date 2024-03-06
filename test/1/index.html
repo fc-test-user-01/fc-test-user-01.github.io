@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Create a MutationObserver instance
+const observer = new MutationObserver((mutationsList, observer) => {
+  // Loop through all mutations
+  for (let mutation of mutationsList) {
+    // Check if nodes were added
+    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+      // Loop through added nodes
+      mutation.addedNodes.forEach(node => {
+        // Check if the added node is an anchor element (<a>)
+        if (node.nodeName.toLowerCase() === 'a') {
+          // Do something with the newly added anchor element
+          alert('New <a> element added:', node);
+        }
+      });
+    }
+  }
+});
+
+// Start observing the entire document body for changes
+observer.observe(document.body, { childList: true, subtree: true });
+
+// Example function that adds a new <a> element dynamically after some time
+function addNewLink() {
+  const newLink = document.createElement('a');
+  newLink.href = '#';
+  newLink.textContent = 'New Link';
+  document.body.appendChild(newLink);
+}
+
+// Example usage: Adding a new <a> element after 3 seconds
+setInterval(addNewLink, 10000);
+</script>
+</head>
+<body>
+</body>
+</html>
+
