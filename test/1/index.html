@@ -20,19 +20,19 @@ const observer = new MutationObserver((mutationsList, observer) => {
   }
 });
 
-// Start observing the entire document body for changes
-observer.observe(document.body, { childList: true, subtree: true });
-
-// Example function that adds a new <a> element dynamically after some time
-function addNewLink() {
-  const newLink = document.createElement('a');
-  newLink.href = '#';
-  newLink.textContent = 'New Link';
-  document.body.appendChild(newLink);
-}
-
-// Example usage: Adding a new <a> element after 3 seconds
-setInterval(addNewLink, 10000);
+window.addEventListener('DOMContentLoaded', (event) => {
+  // Start observing the entire document body for changes
+  observer.observe(document.body, { childList: true, subtree: true });
+  // Example function that adds a new <a> element dynamically after some time
+  function addNewLink() {
+    const newLink = document.createElement('a');
+    newLink.href = '#';
+    newLink.textContent = 'New Link';
+    document.body.appendChild(newLink);
+  }
+  // Example usage: Adding a new <a> element after 3 seconds
+  setInterval(addNewLink, 10000);
+});
 </script>
 </head>
 <body>
