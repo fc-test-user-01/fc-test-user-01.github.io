@@ -30,8 +30,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       if (event.currentTarget.dataset?.noLoading) { return ; }
       addNewLink('ADDED');
 //      document.querySelector(`#beforeunload`).style.display = 'block';
-//      event.preventDefault();
-//      location.href = href;
+      event.preventDefault();
+      location.href = href;
     });
   }
 
