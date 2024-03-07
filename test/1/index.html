@@ -12,8 +12,7 @@ const observer = new MutationObserver((mutationsList, observer) => {
       mutation.addedNodes.forEach(node => {
         // Check if the added node is an anchor element (<a>)
         if (node.nodeName.toLowerCase() === 'a') {
-          // Do something with the newly added anchor element
-          alert('New <a> element added:', node);
+// Do something with the newly added anchor element
         }
       });
     }
@@ -21,8 +20,23 @@ const observer = new MutationObserver((mutationsList, observer) => {
 });
 
 window.addEventListener('DOMContentLoaded', (event) => {
+
+  const elements = document.querySelectorAll('a');
+  for (const element of elements) {
+    element.addEventListener('click', (event) => {
+      let href = event.currentTarget.getAttribute('href');
+      if (!href) return ;
+      if (href.trim().startsWith(`javascript`)) return ;
+      if (event.currentTarget.dataset?.noLoading) { return ; }
+      document.querySelector(`#beforeunload`).style.display = 'block';
+//      event.preventDefault();
+//      location.href = href;
+    });
+  }
+
   // Start observing the entire document body for changes
   observer.observe(document.body, { childList: true, subtree: true });
+
   // Example function that adds a new <a> element dynamically after some time
   function addNewLink() {
     const newLink = document.createElement('a');
@@ -30,6 +44,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     newLink.textContent = 'New Link';
     document.body.appendChild(newLink);
   }
+
   // Example usage: Adding a new <a> element after 3 seconds
   setInterval(addNewLink, 10000);
 });

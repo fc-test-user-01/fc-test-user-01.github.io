@@ -52,8 +52,18 @@
 //window.addEventListener("visibilitychange", (event) => {
 //  alert(1)
 //});
-      window.addEventListener(`pagehide`, (event) => {
-        alert(1)
+//      window.addEventListener(`pagehide`, (event) => {
+//        alert(1)
+//      })
+      window.addEventListener(`DOMContentLoaded`, (event) => {
+          elements = document.querySelectorAll(`a`);
+          for (const element of elements) {
+            element.addEventListener(`click`, (event) => {
+              event.preventDefault();
+	      href = event.target.getAttribute(`href`);
+	      location.href = href
+	    })
+          }
       })
     </script>
 </head>
