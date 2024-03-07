@@ -28,7 +28,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       if (!href) return ;
       if (href.trim().startsWith(`javascript`)) return ;
       if (event.currentTarget.dataset?.noLoading) { return ; }
-      document.querySelector(`#beforeunload`).style.display = 'block';
+      addNewLink('ADDED');
+//      document.querySelector(`#beforeunload`).style.display = 'block';
 //      event.preventDefault();
 //      location.href = href;
     });
@@ -38,16 +39,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
   observer.observe(document.body, { childList: true, subtree: true });
 
   // Example function that adds a new <a> element dynamically after some time
-  function addNewLink() {
+  function addNewLink(name = 'New Link') {
     const newLink = document.createElement('a');
-    newLink.href = '#';
-    newLink.textContent = 'New Link';
+    newLink.href = '/';
+    newLink.textContent = name;
     document.body.appendChild(newLink);
   }
 
   // Example usage: Adding a new <a> element after 3 seconds
   setInterval(addNewLink, 10000);
 });
+
 </script>
 </head>
 <body>
