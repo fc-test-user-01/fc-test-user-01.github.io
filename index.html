@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
           history.pushState(null, null, '/test.html');
-          history.forward(1);
+          // history.forward(1);
           window.addEventListener("popstate", _ => alert(1));
       }, 2000);
 });
