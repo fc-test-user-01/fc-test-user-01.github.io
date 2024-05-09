@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test2</title>
+  </head>
+  <body>
+    <button id="btn">history.back()</button>
+    <script>
+      history.pushState(null, null, null)
+
+      window.addEventListener("popstate", _ => alert(1))
+
+      document.getElementById("btn").addEventListener("click", _ => {
+        history.back()
+      }, false)
+    </script>
+  </body>
+</html>
