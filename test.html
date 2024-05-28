@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test1</title>
-  </head>
-  <body>
-    <a href="test2.html">Link</a>
-  </body>
+<html>
+<head>
+  <title>Submit Form and Redirect</title>
+</head>
+<body>
+  <h1>Submit Form and Redirect</h1>
+  <form id="myForm" action="https://google.com" method="get" target="hidden_iframe">
+    <button type="submit">Submit</button>
+  </form>
+  <iframe id="hidden_iframe" name="hidden_iframe"></iframe>
+</body>
 </html>
